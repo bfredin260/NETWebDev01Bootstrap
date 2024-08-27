@@ -6,4 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
             bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast')).show();
         }
     });
+
+    document.addEventListener('keydown', function(event) {
+        event.key === 'Escape' ? bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast')).hide() : '';
+
+    })
 });
