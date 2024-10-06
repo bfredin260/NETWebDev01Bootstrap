@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             break;
     }
     document.getElementsByTagName('h1')[0].classList.add(animation);
-    
+
     const elem = document.getElementById('dob');
     const datepicker = new Datepicker(elem, {
       // options
@@ -61,4 +61,19 @@ document.addEventListener("DOMContentLoaded", function() {
           elem.classList.add("animate__animated", "animate__bounceOutUp");
       }
     });
+
+    document.getElementById('submit').addEventListener('click', function(e){
+        let checks = document.getElementsByClassName('form-check-input');
+        if (!(checks[0].checked || checks[1].checked || checks[2].checked)) {
+            bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast')).show();
+        }
+    });
+
+    document.getElementById('reset-checks').addEventListener('click', function(e){
+        let checks = document.getElementsByClassName('form-check-input');
+        console.log(checks);
+        checks[0].checked = false;
+        checks[1].checked = false;
+        checks[2].checked = false;
+    })
   });
