@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
             animation = 'animate__heartBeat';
             break;
     }
-    document.getElementsByTagName('h1')[0].classList.add(animation);
+    let h1 = document.getElementsByTagName('h1')[0];
+    h1.classList.add(animation);
 
     const elem = document.getElementById('dob');
     const datepicker = new Datepicker(elem, {
@@ -47,6 +48,15 @@ document.addEventListener("DOMContentLoaded", function() {
       autohide: true,
       format: 'MM-dd'
     });
+
+    for(let check of document.getElementsByClassName('form-check-input')) {
+        check.addEventListener('mouseover', function(e) {
+            h1.style.color = e.target.id;
+        });
+        check.addEventListener('mouseout', function(e) {
+            h1.style.color = 'slategray';
+        })
+    }
   
     // uncheck all boxes by default (Firefox)
     document.querySelectorAll('.form-check-input').forEach(c => c.checked = false);
@@ -70,10 +80,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('reset-checks').addEventListener('click', function(e){
-        let checks = document.getElementsByClassName('form-check-input');
-        console.log(checks);
-        checks[0].checked = false;
-        checks[1].checked = false;
-        checks[2].checked = false;
+        for(let check of document.getElementsByClassName('form-check-input'))
+        if(check.checked = true) {
+            document.getElementById(check.id + 'Img').classList.add('animate__animated', 'animate__bounceOutUp');
+            check.checked = false;
+        }
     })
   });
